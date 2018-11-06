@@ -29,7 +29,8 @@ function Format-StorageLogFile {
   Process{
       if (Test-Path $path) {
 
-          $fileContent = (Get-Content -Path $Path).split("`n")
+          $fileContent = Get-Content -Path $Path
+          $fileContent = $fileContent -split("`n")
           [regex]$pattern = ';+(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)'
 
           foreach($logEntry in $fileContent){
